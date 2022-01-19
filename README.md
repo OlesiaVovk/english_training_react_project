@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# Проект для изучения английского языка по карточкам
+## Создан с помощью фреймворка React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
