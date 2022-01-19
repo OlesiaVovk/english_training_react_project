@@ -1,0 +1,20 @@
+.trainingMode {
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+
+  .pagination {
+    button {
+      width: 7vw;
+      margin: 20px;
+      cursor: pointer;
+      background-color: #fff;
+      border: none;
+      box-shadow: 3px 3px 3px rgb(186, 187, 186);
+      transition: width 2s;
+    }
+  }
+}

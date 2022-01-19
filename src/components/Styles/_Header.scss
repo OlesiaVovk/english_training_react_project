@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 3px 3px 3px rgb(186, 187, 186);
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 95vw;
+    margin: 0 auto;
+  }
+
+  .logo {
+    cursor: pointer;
+    width: 50px;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  a {
+    margin-right: 50px;
+    text-decoration: none;
+    margin: 10px;
+    color: #000;
+  }
+}

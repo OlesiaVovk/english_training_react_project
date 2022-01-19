@@ -1,0 +1,92 @@
+[
+  {
+    "key": "0",
+    "id": "10847",
+    "english": "Butterfly",
+    "transcription": "[ˈbʌtəflaɪ]",
+    "russian": "Бабочка",
+    "tags": "насекомые",
+    "tags_json": "[\"u0436u0438u0432u043eu0442u043du044bu0435334\"]"
+  },
+  {
+    "key": "1",
+    "id": "10848",
+    "english": "Hedgehog",
+    "transcription": "[ˈhedʒhɔːɡ]",
+    "russian": "Ёжик",
+    "tags": "животные",
+    "tags_json": "[\"u043bu0434u043eu043bu0434u0434\"]"
+  },
+  {
+    "key": "2",
+    "id": "10853",
+    "english": "Apple",
+    "transcription": "[ˈæpl]",
+    "russian": "Яблоко",
+    "tags": "фрукты",
+    "tags_json": "[\"u0440u043bu043eu0440u043eu0440u043eu043b\"]"
+  },
+  {
+    "key": "3",
+    "id": "10854",
+    "english": "Pear",
+    "transcription": "[peə]",
+    "russian": "Груша",
+    "tags": "фрукты",
+    "tags_json": "null"
+  },
+  {
+    "key": "4",
+    "id": "10862",
+    "english": "Carrot",
+    "transcription": "[ˈkærət]",
+    "russian": "Морковка",
+    "tags": "овощи",
+    "tags_json": "[\"u043eu0432u043eu0449u0438\"]"
+  },
+  {
+    "key": "5",
+    "id": "10867",
+    "english": "Plum",
+    "transcription": "[plʌm]",
+    "russian": "Слива",
+    "tags": "фрукты",
+    "tags_json": "null"
+  },
+  {
+    "key": "6",
+    "id": "10872",
+    "english": "Unicorn",
+    "transcription": "[ˈyo͞onəˌkôrn]",
+    "russian": "Единорог",
+    "tags": "сказка",
+    "tags_json": "null"
+  },
+  {
+    "key": "7",
+    "id": "10874",
+    "english": "Cat",
+    "transcription": "[kæt]",
+    "russian": "Кот",
+    "tags": "животные",
+    "tags_json": "[\"u0436u0438u0432u043eu0442u043du044bu0435\"]"
+  },
+  {
+    "key": "8",
+    "id": "10879",
+    "english": "Fox",
+    "transcription": "[fäks]",
+    "russian": "Лиса",
+    "tags": "животные",
+    "tags_json": "[\"u0441u043au0430u0437u043au0430\"]"
+  },
+  {
+    "key": "9",
+    "id": "10879",
+    "english": "Dog",
+    "transcription": "[dôɡ]",
+    "russian": "Собака",
+    "tags": "животные",
+    "tags_json": "null"
+  }
+]

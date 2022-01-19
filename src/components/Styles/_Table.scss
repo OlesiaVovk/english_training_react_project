@@ -1,0 +1,51 @@
+@import "~antd/dist/antd.css";
+
+.editable-cell {
+  position: relative;
+}
+
+.editable-cell-value-wrap {
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+  //background-color: rgb(224, 245, 224);
+  padding: 4px 11px;
+  border-radius: 2px;
+}
+
+.addBtn {
+  margin: 5px 0 0 15px;
+  background-color: $main-color;
+  box-shadow: 2px 1px 3px $accent-color;
+}
+
+Table {
+  max-width: 80vw;
+  margin: 100px auto 0;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px rgb(186, 187, 186);
+}
+
+.trashIcon {
+  color: rgb(173, 8, 8);
+  border: none;
+  background-color: transparent;
+}
+
+.pencilIcon {
+  color: seagreen;
+  border: none;
+  background-color: transparent;
+}
+
+.cancelButton {
+  color: rgb(250, 7, 7);
+  border: none;
+  background-color: transparent;
+}
+
+.ant-table-content {
+  background-color: rgb(223, 231, 231);
+}

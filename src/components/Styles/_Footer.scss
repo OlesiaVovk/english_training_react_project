@@ -1,0 +1,13 @@
+.footer {
+  width: 100%;
+  min-height: 10vh;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+
+  .linked {
+    text-decoration: none;
+    color: #000;
+  }
+}
