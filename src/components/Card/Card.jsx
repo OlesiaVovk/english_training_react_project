@@ -3,19 +3,14 @@ import { Button } from "antd";
 
 function Card(props) {
   const [pressed, setPressed] = useState(false);
-  const checkButton = useRef();
+  const ref = useRef();
 
-  useEffect(() => {
-    checkButton.current.focus();
-  });
+  useEffect(() => ref.current.focus());
 
-  function handleFocus() {
+  function handleClick(e) {
+    e.preventDefault();
     setPressed(!pressed);
-  }
-
-  function handleClick(callback) {
-    setPressed(!pressed);
-    callback(setTimeout(() => props.countWord(), 100));
+    props.WordsCount();
   }
 
   return (
@@ -28,11 +23,9 @@ function Card(props) {
         {props.russian}
       </h3>
       <Button
-        onMouseDown={handleClick}
-        onMouseUp={handleClick}
+        onClick={handleClick}
+        ref={ref}
         style={{ display: pressed && "none" }}
-        ref={checkButton}
-        onClick={handleFocus}
       >
         {pressed ? props.russian : "Check!"}
       </Button>
