@@ -15,10 +15,10 @@
   border-radius: 2px;
 }
 
-.addBtn {
-  margin: 5px 0 0 15px;
-  background-color: $main-color;
-  box-shadow: 2px 1px 3px $accent-color;
+.editable-row .ant-form-item-explain {
+  position: absolute;
+  top: 100%;
+  font-size: 12px;
 }
 
 Table {
@@ -29,7 +29,7 @@ Table {
 }
 
 .trashIcon {
-  color: rgb(173, 8, 8);
+  color: #bb2729;
   border: none;
   background-color: transparent;
 }

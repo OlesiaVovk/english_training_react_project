@@ -5,12 +5,9 @@ import Card from "../Card/Card";
 export default function Game(props) {
   const [number, setNumber] = useState(0);
   const { id, ...itemProps } = props.englishCards[number];
-  const [count, setCount] = useState(0);
   const [selected, setSelected] = useState([]);
 
   const WordsCount = () => {
-    setCount(count + 1);
-
     const newArr = new Set(selected);
     newArr.add(props.englishCards[number]);
     setSelected(Array.from(newArr));
@@ -39,8 +36,7 @@ export default function Game(props) {
             <ChevronRightIcon size={24} />
           </button>
         </div>
-        {/* <h2>{`Всего кликов: ${count}`}</h2> */}
-        <h2>{`Выучено слов: ${selected.length} / ${props.englishCards.length}`}</h2>
+        <h2 className="learned">{`Выученных слов: ${selected.length} / ${props.englishCards.length}`}</h2>
       </div>
     </>
   );

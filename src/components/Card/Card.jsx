@@ -14,7 +14,7 @@ function Card(props) {
   }
 
   return (
-    <div className="card">
+    <div className="card fade">
       <div className="card-body">
         <h4 className="card-title">{props.english}</h4>
         <p className="card-transcription">{props.transcription}</p>

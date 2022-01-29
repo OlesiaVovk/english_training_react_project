@@ -11,6 +11,7 @@
   box-shadow: 3px 3px 3px rgb(186, 187, 186);
 
   .card-title {
+    color: #bb2729;
     font-size: $main-font-size;
     border-bottom: 1px solid #000;
   }
@@ -20,7 +21,7 @@
   }
 
   h3 {
-    color: rgb(156, 13, 13);
+    color: #bb2729;
     margin: 0 auto 10px;
   }
 
@@ -30,13 +31,16 @@
     padding: 10px;
     cursor: pointer;
     border: none;
-    color: #fff;
-    background-color: $accent-color;
+    font-weight: 600;
+    color: #bb2729;
+    background-color: rgb(223, 231, 231);
     box-shadow: 3px 3px 3px rgb(186, 187, 186);
 
     &:focus {
-      color: #fff;
-      background-color: $accent-color;
+      font-weight: 600;
+      color: #bb2729;
+      background-color: rgb(223, 231, 231);
+      box-shadow: 3px 3px 3px rgb(186, 187, 186);
     }
   }
 }

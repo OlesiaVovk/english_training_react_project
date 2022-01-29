@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import { TrashIcon, PencilIcon } from "@primer/octicons-react";
-import {
-  Table,
-  Input,
-  InputNumber,
-  Popconfirm,
-  Form,
-  Typography,
-  /* Button, */
-} from "antd";
+import { Table, Input, Popconfirm, Form, Typography } from "antd";
 
 const originData = require("../englishCards.json");
 
@@ -22,7 +14,7 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === "number" ? <InputNumber /> : <Input />;
+  const inputNode = <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -34,7 +26,7 @@ const EditableCell = ({
           rules={[
             {
               required: true,
-              message: `Please Input ${title}!`,
+              message: `Пожалуйста заполните поле ${title}!`,
             },
           ]}
         >
@@ -80,9 +72,17 @@ const EditableTable = () => {
       const newData = [...data];
       const index = newData.findIndex((item) => key === item.key);
 
+      for (key in row) {
+        if (row[key].match(/^[0-9]+$/i)) {
+          console.log("Введенные значения не могут быть цифрами");
+        } else {
+          console.log("Здесь все правильно");
+        }
+      }
+
       if (index > -1) {
         const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
+        newData[index] = { ...item, ...row };
         setData(newData);
         setEditingKey("");
       } else {
@@ -176,7 +176,7 @@ const EditableTable = () => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === "Transcription" ? "number" : "text",
+        inputType: col.dataIndex === "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -192,6 +192,7 @@ const EditableTable = () => {
             cell: EditableCell,
           },
         }}
+        //sticky={true}
         bordered
         dataSource={data}
         columns={mergedColumns}
