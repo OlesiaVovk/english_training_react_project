@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TrashIcon, PencilIcon } from "@primer/octicons-react";
 import { Table, Input, Popconfirm, Form, Typography } from "antd";
-
-const originData = require("../englishCards.json");
+import { Context } from "../Context/Context";
 
 const EditableCell = ({
   editing,
@@ -40,16 +39,16 @@ const EditableCell = ({
 };
 
 const EditableTable = () => {
+  const { englishWords, setEnglishWords } = useContext(Context);
   const [form] = Form.useForm();
-  const [data, setData] = useState([...originData]);
   const [editingKey, setEditingKey] = useState("");
 
   const handleDelete = (key) => {
-    const dataSource = [...data];
-    setData(dataSource.filter((item) => item.key !== key));
+    const dataSource = [...englishWords];
+    setEnglishWords(dataSource.filter((item) => item.id !== key));
   };
 
-  const isEditing = (record) => record.key === editingKey;
+  const isEditing = (record) => record.id === editingKey;
 
   const edit = (record) => {
     form.setFieldsValue({
@@ -59,7 +58,7 @@ const EditableTable = () => {
       tags: "",
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id);
   };
 
   const cancel = () => {
@@ -69,8 +68,8 @@ const EditableTable = () => {
   const save = async (key) => {
     try {
       const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
+      const newData = [...englishWords];
+      const index = newData.findIndex((item) => key === item.id);
 
       for (key in row) {
         if (row[key].match(/^[0-9]+$/i)) {
@@ -83,11 +82,11 @@ const EditableTable = () => {
       if (index > -1) {
         const item = newData[index];
         newData[index] = { ...item, ...row };
-        setData(newData);
+        setEnglishWords(newData);
         setEditingKey("");
       } else {
         newData.push(row);
-        setData(newData);
+        setEnglishWords(newData);
         setEditingKey("");
       }
     } catch (errInfo) {
@@ -129,7 +128,7 @@ const EditableTable = () => {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.key)}
+              onClick={() => save(record.id)}
               style={{
                 marginRight: 8,
               }}
@@ -155,10 +154,10 @@ const EditableTable = () => {
       dataIndex: "operation",
       width: "5vw",
       render: (_, record) =>
-        originData.length >= 1 ? (
+        englishWords.length >= 1 ? (
           <Popconfirm
             title="Sure to delete?"
-            onConfirm={() => handleDelete(record.key)}
+            onConfirm={() => handleDelete(record.id)}
           >
             <button className="trashIcon">
               <TrashIcon size={24} />
@@ -194,7 +193,8 @@ const EditableTable = () => {
         }}
         //sticky={true}
         bordered
-        dataSource={data}
+        dataSource={englishWords}
+        rowKey="id"
         columns={mergedColumns}
         rowClassName="editable-row"
         pagination={{
