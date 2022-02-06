@@ -39,14 +39,9 @@ const EditableCell = ({
 };
 
 const EditableTable = () => {
-  const { englishWords, setEnglishWords } = useContext(Context);
+  const { englishWords, deleteWord, addWord, editWord } = useContext(Context);
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
-
-  const handleDelete = (key) => {
-    const dataSource = [...englishWords];
-    setEnglishWords(dataSource.filter((item) => item.id !== key));
-  };
 
   const isEditing = (record) => record.id === editingKey;
 
@@ -73,23 +68,17 @@ const EditableTable = () => {
 
       for (key in row) {
         if (row[key].match(/^[0-9]+$/i)) {
-          console.log("Введенные значения не могут быть цифрами");
-        } else {
-          console.log("Здесь все правильно");
+          throw new Error("Введенные значения не могут быть цифрами");
         }
       }
-
       if (index > -1) {
-        const item = newData[index];
-        newData[index] = { ...item, ...row };
-        setEnglishWords(newData);
-        setEditingKey("");
+        editWord(row, index);
       } else {
-        newData.push(row);
-        setEnglishWords(newData);
-        setEditingKey("");
+        addWord(row);
       }
+      setEditingKey("");
     } catch (errInfo) {
+      alert(errInfo);
       console.log("Validate Failed:", errInfo);
     }
   };
@@ -157,7 +146,7 @@ const EditableTable = () => {
         englishWords.length >= 1 ? (
           <Popconfirm
             title="Sure to delete?"
-            onConfirm={() => handleDelete(record.id)}
+            onConfirm={() => deleteWord(record.id)}
           >
             <button className="trashIcon">
               <TrashIcon size={24} />

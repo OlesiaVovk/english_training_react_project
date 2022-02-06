@@ -1,34 +1,70 @@
 import { createContext, useState } from "react";
-import { SpinnerDotsScale } from "../Spinner/Spinner";
 
 const Context = createContext();
 
 function ContextProvider(props) {
   const [englishWords, setEnglishWords] = useState([]);
-  const [loading, isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error] = useState(null);
 
   function loadWords() {
-    isLoading(!loading);
     fetch("http://itgirlschool.justmakeit.ru/api/words")
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong ...");
+        }
+      })
       .then((response) => {
         setEnglishWords(response);
-        isLoading(loading);
+        setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error, false);
       }, []);
   }
 
-  function deleteWord() {}
+  const deleteWord = (key) => {
+    fetch(`http://itgirlschool.justmakeit.ru/api/words/${key}/delete`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=utf-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => loadWords())
+      .catch((error) => console.log(error));
+  };
 
-  function addWord() {}
+  function addWord(record) {
+    fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
+      method: "POST",
+      body: JSON.stringify(record),
+      headers: {
+        "Content-type": "application/json; charset=utf-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => loadWords())
+      .catch((error) => console.log(error));
+  }
 
-  function changeWord() {}
+  const editWord = (record, index) => {
+    const item = englishWords[index];
 
-  /*    isLoading(!loading) ? (
-    <SpinnerDotsScale />
-  ) : */
+    fetch(`http://itgirlschool.justmakeit.ru/api/words/${item.id}/update`, {
+      method: "POST",
+      body: JSON.stringify(record),
+      headers: {
+        "Content-type": "application/json; charset=utf-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => loadWords())
+      .catch((error) => console.log(error));
+  };
+
   return (
     <Context.Provider
       value={{
@@ -37,7 +73,9 @@ function ContextProvider(props) {
         loadWords,
         deleteWord,
         addWord,
-        changeWord,
+        editWord,
+        isLoading,
+        error,
       }}
     >
       {props.children}
