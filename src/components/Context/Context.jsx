@@ -33,20 +33,23 @@ function ContextProvider(props) {
       },
     })
       .then((response) => response.json())
-      .then((response) => loadWords())
+      .then(() => loadWords())
       .catch((error) => console.log(error));
   };
 
   function addWord(record) {
+    delete record.id;
+    console.log(record);
     fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify(record),
       headers: {
         "Content-type": "application/json; charset=utf-8",
       },
     })
-      .then((response) => response.json())
-      .then((response) => loadWords())
+      .then((response) => console.log(response))
+      .then(() => loadWords())
       .catch((error) => console.log(error));
   }
 
@@ -61,7 +64,7 @@ function ContextProvider(props) {
       },
     })
       .then((response) => response.json())
-      .then((response) => loadWords())
+      .then(() => loadWords())
       .catch((error) => console.log(error));
   };
 

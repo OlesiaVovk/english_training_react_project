@@ -39,7 +39,8 @@ const EditableCell = ({
 };
 
 const EditableTable = () => {
-  const { englishWords, deleteWord, addWord, editWord } = useContext(Context);
+  const { englishWords, deleteWord, addWord, editWord, setEnglishWords } =
+    useContext(Context);
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
 
@@ -62,25 +63,45 @@ const EditableTable = () => {
 
   const save = async (key) => {
     try {
-      const row = await form.validateFields();
+      const editedRow = await form.validateFields();
       const newData = [...englishWords];
       const index = newData.findIndex((item) => key === item.id);
 
-      for (key in row) {
-        if (row[key].match(/^[0-9]+$/i)) {
+      for (let field in editedRow) {
+        if (editedRow[field].match(/^[0-9]+$/i)) {
           throw new Error("Введенные значения не могут быть цифрами");
         }
       }
-      if (index > -1) {
-        editWord(row, index);
+      if (key === null) {
+        addWord(editedRow);
       } else {
-        addWord(row);
+        editWord(editedRow, index);
       }
       setEditingKey("");
     } catch (errInfo) {
       alert(errInfo);
       console.log("Validate Failed:", errInfo);
     }
+  };
+
+  const handleAdd = () => {
+    const newData = [...englishWords];
+    newData.push({
+      english: "",
+      transcription: "",
+      russian: "",
+      tags: "",
+      tags_json: "[]",
+      id: null,
+    });
+    setEnglishWords(newData);
+    form.setFieldsValue({
+      english: "",
+      transcription: "",
+      russian: "",
+      tags: "",
+    });
+    setEditingKey(null);
   };
 
   const columns = [
@@ -155,6 +176,7 @@ const EditableTable = () => {
         ) : null,
     },
   ];
+
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
       return col;
@@ -173,24 +195,28 @@ const EditableTable = () => {
   });
 
   return (
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        //sticky={true}
-        bordered
-        dataSource={englishWords}
-        rowKey="id"
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={{
-          onChange: cancel,
-        }}
-      />
-    </Form>
+    <>
+      <Form form={form} component={false} className="form">
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={englishWords}
+          rowKey="id"
+          columns={mergedColumns}
+          rowClassName="editable-row"
+          pagination={{
+            onChange: cancel,
+          }}
+        />
+        <button className="addNewRow" onClick={handleAdd}>
+          Добавить новое слово
+        </button>
+      </Form>
+    </>
   );
 };
 

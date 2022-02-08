@@ -1,25 +1,25 @@
 @import "~antd/dist/antd.css";
 
-.editable-cell {
+/* .editable-cell {
   position: relative;
-}
+} */
 
-.editable-cell-value-wrap {
+/* .editable-cell-value-wrap {
   padding: 5px 12px;
   cursor: pointer;
-}
+} */
 
-.editable-row:hover .editable-cell-value-wrap {
+/* .editable-row:hover .editable-cell-value-wrap {
   //background-color: rgb(224, 245, 224);
   padding: 4px 11px;
   border-radius: 2px;
-}
+} */
 
-.editable-row .ant-form-item-explain {
+/* .editable-row .ant-form-item-explain {
   position: absolute;
   top: 100%;
   font-size: 12px;
-}
+} */
 
 Table {
   max-width: 80vw;
@@ -32,20 +32,33 @@ Table {
   color: #bb2729;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .pencilIcon {
   color: seagreen;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .cancelButton {
-  color: rgb(250, 7, 7);
+  color: $accent-color2;
   border: none;
   background-color: transparent;
 }
 
 .ant-table-content {
   background-color: rgb(223, 231, 231);
+}
+
+.addNewRow {
+  max-width: 80vw;
+  margin: 0 auto 20px;
+  padding: 10px;
+  border: none;
+  color: $accent-color2;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px rgb(186, 187, 186);
+  cursor: pointer;
 }
